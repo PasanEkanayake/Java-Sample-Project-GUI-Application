@@ -4,17 +4,47 @@
  */
 package sample.project;
 
+import java.sql.*;
+import javax.swing.JOptionPane;
+import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import javax.swing.RowFilter;
+
 /**
  *
  * @author Pasan Ekanayake
  */
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
+    private static final String username = "root";
+    private static final String password = "";
+    private static final String dataConn = "jdbc:mysql://localhost:3306/sample_project";
+    
+    Connection sqlConn = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    
+    int n1, n2;
+    
     public Login() {
         initComponents();
+        UpdateDB();
+    }
+    
+    public void UpdateDB(){
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            sqlConn = DriverManager.getConnection(dataConn, username, password);
+            pst = sqlConn.prepareStatement("select * from users");
+            rs = pst.executeQuery();
+            ResultSetMetaData stData = rs.getMetaData();
+            n1 = stData.getColumnCount();
+            JOptionPane.showMessageDialog(this, "Successfully Connected.");
+        }
+        catch (Exception ex){
+            JOptionPane.showMessageDialog(this, "Database Connection Error.");
+        }
     }
 
     /**
@@ -31,7 +61,7 @@ public class Login extends javax.swing.JFrame {
         email = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        password = new javax.swing.JPasswordField();
+        pword = new javax.swing.JPasswordField();
         jCheckBox1 = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -97,7 +127,7 @@ public class Login extends javax.swing.JFrame {
                         .addGap(46, 46, 46)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(email)
-                            .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE))
+                            .addComponent(pword, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jCheckBox1)))
                 .addGap(21, 21, 21))
@@ -123,7 +153,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addComponent(jButton1)
@@ -156,9 +186,33 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Dashboard dash = new Dashboard();
-        dash.setVisible(true);
-        this.hide();
+        try{
+            
+            Class.forName("com.mysql.jdbc.Driver");
+            sqlConn = DriverManager.getConnection(dataConn, username, password);
+            pst = sqlConn.prepareStatement("select email, password from users WHERE email=?, password=?");
+            String emailTemp = email.getText();
+            String pwordTemp = pword.getText();
+            pst.setString(1, emailTemp);
+            pst.setString(2, pwordTemp);
+            rs = pst.executeQuery();
+            
+            if(rs.next() == false){
+                JOptionPane.showMessageDialog(this, "User not found.");
+                email.setText("");
+                pword.setText("");
+            }
+            else{
+                Dashboard dash = new Dashboard();
+                dash.setVisible(true);
+                this.hide();
+            }
+            
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(this, "Database connection failed.");
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -205,6 +259,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField password;
+    private javax.swing.JPasswordField pword;
     // End of variables declaration//GEN-END:variables
 }
