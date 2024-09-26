@@ -126,6 +126,11 @@ public class RegLocal extends javax.swing.JFrame {
         jCheckBox1.setFont(new java.awt.Font("Rockwell", 1, 12)); // NOI18N
         jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setText("Show/Hide");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
         jButton3.setText("Already has an account");
@@ -275,10 +280,37 @@ public class RegLocal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try{
+            
+            Class.forName("com.mysql.jdbc.Driver");
+            sqlConn = DriverManager.getConnection(dataConn, username, password);
+            pst = sqlConn.prepareStatement("insert into users (fname, lname, email, password) value (?,?,?,?)");
+            pst.setString(1, fname.getText());
+            pst.setString(2, lname.getText());
+            pst.setString(3, email.getText());
+            pst.setString(4, pword.getText());
+            
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "User Registered successfully.");
+            
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(this, ex);
+        }
+        
         Login login = new Login();
         login.setVisible(true);
         this.hide();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        if(jCheckBox1.isSelected()){
+            pword.setEchoChar((char) 0);
+        }
+        else{
+            pword.setEchoChar('*');
+        }
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
