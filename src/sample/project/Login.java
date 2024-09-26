@@ -190,7 +190,7 @@ public class Login extends javax.swing.JFrame {
             
             Class.forName("com.mysql.jdbc.Driver");
             sqlConn = DriverManager.getConnection(dataConn, username, password);
-            pst = sqlConn.prepareStatement("select email, password from users WHERE email=?, password=?");
+            pst = sqlConn.prepareStatement("select email, password from users WHERE email=? and password=?");
             String emailTemp = email.getText();
             String pwordTemp = pword.getText();
             pst.setString(1, emailTemp);
