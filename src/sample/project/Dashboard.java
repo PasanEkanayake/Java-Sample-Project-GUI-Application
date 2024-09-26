@@ -15,7 +15,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private static final String username = "root";
     private static final String password = "";
-    private static final String dataConn = "jdbc:mysql://localhost:3306/dbconnection";
+    private static final String dataConn = "jdbc:mysql://localhost:3306/sample_project";
     
     Connection sqlConn = null;
     PreparedStatement pst = null;
@@ -69,6 +69,7 @@ public class Dashboard extends javax.swing.JFrame {
         update = new javax.swing.JButton();
         delete = new javax.swing.JButton();
         view = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,11 +97,11 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Price");
+        jLabel5.setText("Price (Rs.)");
 
         jLabel6.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Weight");
+        jLabel6.setText("Weight (g)");
 
         jLabel7.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -124,9 +125,23 @@ public class Dashboard extends javax.swing.JFrame {
 
         delete.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
         delete.setText("Delete Product");
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
 
         view.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
         view.setText("View Prodct Details");
+        view.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("(i.e. 2024-12-12)");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -150,7 +165,10 @@ public class Dashboard extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addGap(48, 48, 48)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pExpire, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(pExpire, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel1))
                             .addComponent(pWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pName, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,7 +213,8 @@ public class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(pExpire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pExpire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(62, 62, 62)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add)
@@ -228,7 +247,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         try{
-            
+
             Class.forName("com.mysql.jdbc.Driver");
             sqlConn = DriverManager.getConnection(dataConn, username, password);
             pst = sqlConn.prepareStatement("insert into productDetails (pID, pName, pPrice, pWeight, pExpire) value (?,?,?,?,?)");
@@ -237,10 +256,10 @@ public class Dashboard extends javax.swing.JFrame {
             pst.setString(3, pPrice.getText());
             pst.setString(4, pWeight.getText());
             pst.setString(5, pExpire.getText());
-            
+
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "Record ADDED successfully.");
-            
+
         }
         catch(Exception ex){
             JOptionPane.showMessageDialog(this, ex);
@@ -249,7 +268,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         try{
-            
+
             Class.forName("com.mysql.jdbc.Driver");
             sqlConn = DriverManager.getConnection(dataConn, username, password);
             pst = sqlConn.prepareStatement("update productDetails set pID=?, pName=?, pPrice=?, pWeight=?, pExpire=? where pID=?");
@@ -259,15 +278,40 @@ public class Dashboard extends javax.swing.JFrame {
             pst.setString(4, pWeight.getText());
             pst.setString(5, pExpire.getText());
             pst.setString(6, pID.getText());
-            
+
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "Record UPDATED successfully.");
-            
+
         }
         catch(Exception ex){
             JOptionPane.showMessageDialog(this, ex);
         }
     }//GEN-LAST:event_updateActionPerformed
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        try{
+
+            Class.forName("com.mysql.jdbc.Driver");
+            sqlConn = DriverManager.getConnection(dataConn, username, password);
+            pst = sqlConn.prepareStatement("DELETE FROM productDetails WHERE pID=?");
+            pst.setString(1, pID.getText());
+
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Record DELETED successfully.");
+
+        }
+        catch(Exception ex){
+
+            JOptionPane.showMessageDialog(this, ex);
+
+        }
+    }//GEN-LAST:event_deleteActionPerformed
+
+    private void viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewActionPerformed
+        ProductDetails details = new ProductDetails();
+        details.setVisible(true);
+        this.hide();
+    }//GEN-LAST:event_viewActionPerformed
 
     /**
      * @param args the command line arguments
@@ -308,6 +352,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton add;
     private javax.swing.JButton delete;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
