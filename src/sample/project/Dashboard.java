@@ -310,7 +310,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewActionPerformed
         ProductDetails details = new ProductDetails();
         details.setVisible(true);
-        this.hide();
+        this.dispose();
     }//GEN-LAST:event_viewActionPerformed
 
     /**
