@@ -40,7 +40,6 @@ public class Login extends javax.swing.JFrame {
             rs = pst.executeQuery();
             ResultSetMetaData stData = rs.getMetaData();
             n1 = stData.getColumnCount();
-            JOptionPane.showMessageDialog(this, "Successfully Connected.");
         }
         catch (Exception ex){
             JOptionPane.showMessageDialog(this, "Database Connection Error.");
