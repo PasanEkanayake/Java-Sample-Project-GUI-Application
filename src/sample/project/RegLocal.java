@@ -119,6 +119,7 @@ public class RegLocal extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(0, 255, 255));
         jButton3.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
         jButton3.setText("Already has an account");
         jButton3.setToolTipText("");
@@ -136,6 +137,7 @@ public class RegLocal extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(0, 255, 255));
         jButton2.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
         jButton2.setText("Register as Administrator");
         jButton2.setToolTipText("");
