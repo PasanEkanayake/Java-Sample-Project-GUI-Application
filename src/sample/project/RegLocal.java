@@ -32,7 +32,6 @@ public class RegLocal extends javax.swing.JFrame {
             rs = pst.executeQuery();
             ResultSetMetaData stData = rs.getMetaData();
             n1 = stData.getColumnCount();
-            JOptionPane.showMessageDialog(this, "Successfully Connected.");
         }
         catch (Exception ex){
             JOptionPane.showMessageDialog(this, "Database Connection Error.");
@@ -245,15 +244,15 @@ public class RegLocal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void fnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fnameActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_fnameActionPerformed
 
     private void lnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lnameActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_lnameActionPerformed
 
     private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_emailActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
