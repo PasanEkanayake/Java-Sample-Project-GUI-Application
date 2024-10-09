@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package sample.project;
 
 import java.sql.*;
@@ -11,10 +7,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.RowFilter;
 
-/**
- *
- * @author Pasan Ekanayake
- */
 public class Login extends javax.swing.JFrame {
 
     private static final String username = "root";
