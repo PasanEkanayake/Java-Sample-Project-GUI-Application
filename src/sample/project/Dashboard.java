@@ -81,6 +81,12 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Product ID");
 
+        pID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pIDActionPerformed(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Product Name");
@@ -302,6 +308,10 @@ public class Dashboard extends javax.swing.JFrame {
         details.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_viewActionPerformed
+
+    private void pIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pIDActionPerformed
 
     /**
      * @param args the command line arguments
