@@ -97,6 +97,12 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        pPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pPriceActionPerformed(evt);
+            }
+        });
+
         jLabel5.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Price (Rs.)");
@@ -322,6 +328,10 @@ public class Dashboard extends javax.swing.JFrame {
     private void pNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pNameActionPerformed
+
+    private void pPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pPriceActionPerformed
 
     /**
      * @param args the command line arguments
