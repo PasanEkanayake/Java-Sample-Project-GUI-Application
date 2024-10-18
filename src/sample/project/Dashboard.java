@@ -44,7 +44,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         pID = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -69,11 +69,11 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Product Details");
 
-        jButton1.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
-        jButton1.setText("Logout");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        logout.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
+        logout.setText("Logout");
+        logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                logoutActionPerformed(evt);
             }
         });
 
@@ -110,6 +110,12 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Weight (g)");
+
+        pWeight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pWeightActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -159,7 +165,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(69, 69, 69)
-                .addComponent(jButton1)
+                .addComponent(logout)
                 .addGap(24, 24, 24))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +207,7 @@ public class Dashboard extends javax.swing.JFrame {
                         .addComponent(jLabel4))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jButton1)))
+                        .addComponent(logout)))
                 .addGap(58, 58, 58)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -247,11 +253,11 @@ public class Dashboard extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         Login login = new Login();
         login.setVisible(true);
         this.hide();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_logoutActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         try{
@@ -333,6 +339,10 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_pPriceActionPerformed
 
+    private void pWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pWeightActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pWeightActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -371,7 +381,6 @@ public class Dashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
     private javax.swing.JButton delete;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -380,6 +389,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton logout;
     private javax.swing.JTextField pExpire;
     private javax.swing.JTextField pID;
     private javax.swing.JTextField pName;
