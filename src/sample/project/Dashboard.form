@@ -239,6 +239,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="pExpire">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pExpireActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="add">
           <Properties>

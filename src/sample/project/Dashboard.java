@@ -121,6 +121,12 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Expire Date");
 
+        pExpire.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pExpireActionPerformed(evt);
+            }
+        });
+
         add.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
         add.setText("Add Details");
         add.addActionListener(new java.awt.event.ActionListener() {
@@ -342,6 +348,10 @@ public class Dashboard extends javax.swing.JFrame {
     private void pWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pWeightActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pWeightActionPerformed
+
+    private void pExpireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pExpireActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pExpireActionPerformed
 
     /**
      * @param args the command line arguments
